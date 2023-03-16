@@ -24,3 +24,9 @@ fn test_volume() {
     let vol = width * height * depth;
     assert_eq!(vol, volume!(6000));
 }
+
+#[test]
+fn test_negative() {
+    let width = meter!(20);
+    assert_eq!(-width, meter!(-20));
+}
