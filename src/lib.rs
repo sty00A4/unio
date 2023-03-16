@@ -274,6 +274,24 @@ macro_rules! year {
         ::Unit::new($v, UnitKind::Native(NativeUnit::Year))
     };
 }
+#[macro_export]
+macro_rules! m_pro_s {
+    ($v:expr) => {
+        unit!($v, unit_pro!(native!(Meter), native!(Second)))
+    };
+}
+#[macro_export]
+macro_rules! area {
+    ($v:expr) => {
+        unit!($v, unit_pow!(native!(Meter), 2))
+    };
+}
+#[macro_export]
+macro_rules! volume {
+    ($v:expr) => {
+        unit!($v, unit_pow!(native!(Meter), 3))
+    };
+}
 
 #[cfg(test)]
 mod tests;
