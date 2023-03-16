@@ -9,9 +9,18 @@ fn test_speed() {
 }
 
 #[test]
-fn test_square_meter() {
+fn test_area() {
     let width = meter!(20);
     let height = meter!(10);
     let area = width * height;
-    assert_eq!(area, unit!(200, unit_pow!(native!(Meter), 2)));
+    assert_eq!(area, area!(200));
+}
+
+#[test]
+fn test_volume() {
+    let width = meter!(20);
+    let height = meter!(10);
+    let depth = meter!(30);
+    let vol = width * height * depth;
+    assert_eq!(vol, volume!(6000));
 }
