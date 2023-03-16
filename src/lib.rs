@@ -1,7 +1,7 @@
 #![allow(dead_code, unused_macros)]
 use std::{
     fmt::{Display, Debug},
-    cmp::Ordering, ops::{Add, Sub, Mul, Div}
+    cmp::Ordering, ops::{Add, Sub, Mul, Div, Neg}
 };
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -217,6 +217,12 @@ impl<T: Div<f32, Output = T>> Div<f32> for Unit<T> {
     type Output = Self;
     fn div(self, rhs: f32) -> Self::Output {
         Self::new(self.value / rhs, self.unit)
+    }
+}
+impl<T: Neg<Output = T>> Neg for Unit<T> {
+    type Output = Self;
+    fn neg(self) -> Self::Output {
+        Self::new(-self.value, self.unit)
     }
 }
 
