@@ -1,7 +1,7 @@
 #![allow(dead_code, unused_macros)]
 use std::{
     fmt::{Display, Debug},
-    cmp::Ordering, ops::{Add, Sub, Mul, Div}
+    cmp::Ordering, ops::{Add, Sub, Mul, Div},
 };
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -96,6 +96,32 @@ impl<T> Unit<T> {
         &mut self.unit
     }
 }
+impl Unit<f64> {
+    pub fn powf(self, n: f64) -> Self {
+        Self::new(self.value.powf(n), self.unit)
+    }
+    pub fn powi(self, n: i32) -> Self {
+        Self::new(self.value.powi(n), self.unit)
+    }
+}
+impl Unit<f32> {
+    pub fn powf(self, n: f32) -> Self {
+        Self::new(self.value.powf(n), self.unit)
+    }
+    pub fn powi(self, n: i32) -> Self {
+        Self::new(self.value.powi(n), self.unit)
+    }
+}
+impl Unit<i64> {
+    pub fn powf(self, n: u32) -> Self {
+        Self::new(self.value.pow(n), self.unit)
+    }
+}
+impl Unit<i32> {
+    pub fn powf(self, n: u32) -> Self {
+        Self::new(self.value.pow(n), self.unit)
+    }
+}
 impl<T: Display> Display for Unit<T> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}{}", self.value, self.unit)
@@ -138,6 +164,22 @@ impl<T: PartialOrd> PartialOrd for Unit<T> {
             Some(Ordering::Equal)
         } else {
             None
+        }
+    }
+}
+impl<T: PartialOrd> Unit<T> {
+    pub fn max(self, other: Self) -> Self {
+        if self >= other {
+            self
+        } else {
+            other
+        }
+    }
+    pub fn min(self, other: Self) -> Self {
+        if self <= other {
+            self
+        } else {
+            other
         }
     }
 }
