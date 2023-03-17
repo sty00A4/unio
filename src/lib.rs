@@ -1,7 +1,7 @@
 #![allow(dead_code, unused_macros)]
 use std::{
     fmt::{Display, Debug},
-    cmp::Ordering, ops::{Add, Sub, Mul, Div}
+    cmp::Ordering, ops::{Add, Sub, Mul, Div, Neg}
 };
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
