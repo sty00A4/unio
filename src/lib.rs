@@ -1,7 +1,7 @@
 #![allow(dead_code, unused_macros)]
 use std::{
     fmt::{Display, Debug},
-    cmp::Ordering, ops::{Add, Sub, Mul, Div},
+    cmp::Ordering, ops::{Add, Sub, Mul, Div}
 };
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -261,6 +261,12 @@ impl<T: Div<f32, Output = T>> Div<f32> for Unit<T> {
         Self::new(self.value / rhs, self.unit)
     }
 }
+impl<T: Neg<Output = T>> Neg for Unit<T> {
+    type Output = Self;
+    fn neg(self) -> Self::Output {
+        Self::new(-self.value, self.unit)
+    }
+}
 
 #[macro_export]
 macro_rules! unit {
@@ -314,6 +320,24 @@ macro_rules! day {
 macro_rules! year {
     ($v:expr) => {
         ::Unit::new($v, UnitKind::Native(NativeUnit::Year))
+    };
+}
+#[macro_export]
+macro_rules! m_pro_s {
+    ($v:expr) => {
+        unit!($v, unit_pro!(native!(Meter), native!(Second)))
+    };
+}
+#[macro_export]
+macro_rules! area {
+    ($v:expr) => {
+        unit!($v, unit_pow!(native!(Meter), 2))
+    };
+}
+#[macro_export]
+macro_rules! volume {
+    ($v:expr) => {
+        unit!($v, unit_pow!(native!(Meter), 3))
     };
 }
 

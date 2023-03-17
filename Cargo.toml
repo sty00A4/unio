@@ -1,5 +1,9 @@
 [package]
-name = "unio"
-version = "0.1.0"
+name = "unios"
+version = "0.2.0"
 edition = "2021"
+description = "A zero dependency rust library for working with units. It implements the basic SI units like *meters*, *seconds*, etc."
+readme = "README.md"
+license = "MIT"
+license-file = "LICENSE"
 [dependencies]
